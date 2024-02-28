@@ -57,10 +57,15 @@ releases:
         value: "{{ .Values.server_name }}"
       - name: ingress.hosts[0].paths
         values: ["/schema/?(.*)"]
+      # Do not set a custom hostname when TLS is disabled ("ingress.tls" is set to null).
+      {{- $values := .Values.cp_schema_registry }}
+      {{- $useTLS := or (not (hasKey $values "ingress")) (not (kindIs "invalid" $values.ingress.tls)) }}
+      {{- if $useTLS }}
       - name: ingress.tls[0].secretName
         value: radar-base-tls
       - name: ingress.tls[0].hosts
         values: ["{{ .Values.server_name }}"]
+      {{ end }}
 
   - name: catalog-server
     chart: radar/catalog-server
