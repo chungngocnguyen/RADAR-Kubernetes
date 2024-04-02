@@ -1,0 +1,21 @@
+bases:
+  - ../environments.yaml
+
+---
+
+{{ readFile "../etc/helmfile-templates.yaml" }}
+
+releases:
+  - name: pebble-acme
+    namespace: cert-manager
+    chart: pebble-acme/pebble
+    version: {{ .Values.pebble_acme._chart_version }}
+    installed: {{ .Values.pebble_acme._install }}
+    timeout: {{ add .Values.base_timeout .Values.pebble_acme._extra_timeout }}
+    <<: *logFailedRelease
+    values:
+      - "../etc/pebble-acme/values.yaml"
+      - {{ .Values.pebble_acme | toYaml | indent 8 | trim }}
+    set:
+      - name: maintainerEmail
+        value: {{ .Values.maintainer_email }}

@@ -1,0 +1,6 @@
+dependencies:
+- name: pebble
+  repository: https://jupyterhub.github.io/helm-chart/
+  version: 1.0.1
+digest: sha256:df6a46ee0acdcbcbc19a1b99687935c51f8e506429355532fa8c9d08732eba66
+generated: "2024-02-14T14:21:04.10132015+01:00"

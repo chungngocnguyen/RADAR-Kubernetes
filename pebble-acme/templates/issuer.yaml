@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: pebble-issuer
+spec:
+  acme:
+    skipTLSVerify: true
+    email: radar@thehyve.nl
+    server: https://pebble-acme:8443/dir
+    privateKeySecretRef:
+      name: pk-pebble-issuer
+    solvers:
+      - selector:
+        http01:
+          ingress:
+            class: nginx
