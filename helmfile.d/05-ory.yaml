@@ -19,5 +19,23 @@ releases:
     installed: {{ .Values.kratos_ui._install }}
     timeout: {{ add .Values.base_timeout .Values.kratos_ui._extra_timeout }}
     values:
-      - "../etc/kratos_ui/values.yaml"
+      - "../etc/kratos-ui/values.yaml"
       - {{ .Values.kratos_ui | toYaml | indent 8 | trim }}
+
+  - name: hydra
+    chart: ory/hydra
+    version: {{ .Values.hydra._chart_version }}
+    installed: {{ .Values.hydra._install }}
+    timeout: {{ add .Values.base_timeout .Values.hydra._extra_timeout }}
+    values:
+      - "../etc/hydra/values.yaml"
+      - {{ .Values.hydra | toYaml | indent 8 | trim }}
+
+  - name: hydra-ui
+    chart: ory/example-idp
+    version: {{ .Values.hydra_ui._chart_version }}
+    installed: {{ .Values.hydra_ui._install }}
+    timeout: {{ add .Values.base_timeout .Values.hydra_ui._extra_timeout }}
+    values:
+      - "../etc/hydra-ui/values.yaml"
+      - {{ .Values.hydra_ui | toYaml | indent 8 | trim }}

@@ -109,12 +109,22 @@ kafka_manager:
 
 kratos:
   _install: false
-  _chart_version: 2.1.6
+  _chart_version: 0.41.0
   _extra_timeout: 0
 
 kratos_ui:
     _install: false
-    _chart_version: 2.1.6
+    _chart_version: 0.41.0
+    _extra_timeout: 0
+
+hydra:
+  _install: false
+  _chart_version: 0.41.0
+  _extra_timeout: 0
+
+hydra_ui:
+    _install: false
+    _chart_version: 0.41.0
     _extra_timeout: 0
 
 # --------------------------------------------------------- 10-base.yaml ---------------------------------------------------------
